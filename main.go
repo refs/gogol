@@ -16,17 +16,17 @@ func main() {
 	end := make(chan os.Signal, 1)
 	signal.Notify(end, os.Interrupt)
 
-	b := newBoard(16, 16)
-	b.clock = 300 * time.Millisecond
+	b := newBoard(25, 25)
+	b.clock = 200 * time.Millisecond
 	clock := time.Tick(b.clock)
 
 	// iterate the board and initialize a random state
-	//bg := newBoolgen()
-	//for i := 0; i < b.width; i++ {
-	//	for j := 0; j < b.height; j++ {
-	//		b.cells[i][j].alive = bg.Bool()
-	//	}
-	//}
+	bg := newBoolgen()
+	for i := 0; i < b.width; i++ {
+		for j := 0; j < b.height; j++ {
+			b.cells[i][j].alive = bg.Bool()
+		}
+	}
 
 	// rectangle - oscillator
 	//b.cells[8][7].alive = true
